@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: studentapp-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: studentapp
+  template:
+    metadata:
+      name: studentapp
+      labels:
+        app: studentapp
+    spec:
+      containers:
+      - name: studentapp
+        image: chetanpatel/studentapp:latest
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: studentapp-config
+        ports:
+        - containerPort: 8080
+          name: studentapp-port

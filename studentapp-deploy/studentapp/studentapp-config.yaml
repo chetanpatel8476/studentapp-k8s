@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: studentapp-config
+data:
+  spring.datasource.url: "jdbc:postgresql://postgres-service:5432/student_db"
+  spring.datasource.driver: "org.postgresql.Driver"
+  spring.datasource.username: "postgres"
+  spring.datasource.password: "postgres"
+  spring.jpa.show-sql: "false"
+  spring.jpa.database-platform: "org.hibernate.dialect.PostgreSQLDialect"
+  spring.jpa.hibernate.ddl-auto: "update"
+  spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation: "true"
