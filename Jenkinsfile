@@ -45,9 +45,7 @@ pipeline {
 
         stage('Deploy Student application in K8s Cluster') {
             steps{
-                withCredentials([kubeconfigFile(credentialsId: 'K8s_Config', variable: 'KUBECONFIG')]) {
-                    sh 'kubectl create -f studentapp/postgres.yml'
-                }
+                sh 'kubectl create -f studentapp/postgres.yml'
             }
         }
     }
