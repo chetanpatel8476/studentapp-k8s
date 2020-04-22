@@ -44,7 +44,9 @@ pipeline {
         **/
 
         stage('Deploy Student application in K8s Cluster') {
-            sh 'kubectl create -f studentapp/postgres.yml'
+            steps{
+                sh 'kubectl create -f studentapp/postgres.yml'
+            }
         }
     }
 }
