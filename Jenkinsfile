@@ -32,5 +32,13 @@ pipeline {
                 }  
             }
         }
+
+        stage('Deploy Student application in K8s Cluster') {
+            steps{
+                kubernetesDeploy configs: 'studentapp-deploy/postgres/**,studentapp-deploy/studentapp/**', 
+                                 kubeConfig: [path: ''], 
+                                 kubeconfigId: 'K8s_Config'
+            }
+        }
     }
 }
