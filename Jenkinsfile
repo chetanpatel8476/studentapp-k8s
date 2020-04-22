@@ -37,7 +37,8 @@ pipeline {
             steps{
                 kubernetesDeploy configs: 'studentapp-deploy/postgres/**,studentapp-deploy/studentapp/**', 
                                  kubeConfig: [path: ''], 
-                                 kubeconfigId: 'K8s_Config'
+                                 kubeconfigId: 'K8s_Config',
+                                 enableConfigSubstitution: true
             }
         }
     }
