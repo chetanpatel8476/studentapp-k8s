@@ -9,6 +9,13 @@ pipeline {
             }
         }
 
+        stage('Maven Clean Package') {
+            steps {
+                sh 'mvn clean package'
+                echo "Package is successfully created."
+            }
+        }
+
         stage('Execute Unit Tests and Generate Code Coverage Report') {
             steps {
                 sh 'mvn -B clean test jacoco:report'
