@@ -25,10 +25,12 @@ pipeline {
 
         stage('Build & Push the Docker image') {
             steps {
-                withDockerRegistry(credentialsId: 'Docker_Credentials', url: 'https://index.docker.io/v1/') {
-                    docker.build("chetanpatel/studentapp:latest",'.').push()
-                }
-            } 
+                script {
+                    withDockerRegistry(credentialsId: 'Docker_Credentials', url: 'https://index.docker.io/v1/') {
+                      def app = docker.build("chetanpatel/studentapp:latest",'.').push()
+                    } 
+                }  
+            }
         }
         
         stage('Deploy Student application in K8s Cluster') {
