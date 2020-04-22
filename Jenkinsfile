@@ -35,7 +35,7 @@ pipeline {
 
         stage('Deploy Student application in K8s Cluster') {
             steps{
-                kubernetesDeploy configs: 'studentapp-deploy/postgres/**,studentapp-deploy/studentapp/**', 
+                kubernetesDeploy configs: 'studentapp-deploy/postgres/postgres-config.yaml', 
                                  kubeConfig: [path: ''], 
                                  kubeconfigId: 'K8s_Config',
                                  enableConfigSubstitution: true
