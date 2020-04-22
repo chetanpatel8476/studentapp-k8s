@@ -35,10 +35,13 @@ pipeline {
         
         stage('Deploy Student application in K8s Cluster') {
             steps{
-                kubernetesDeploy configs: 'studentapp-deploy/studentapp/studentapp-deployment.yaml', 
+                script {
+                    def buildNumber = "${env.BUILD_NUMBER}"
+                    kubernetesDeploy configs: 'studentapp-deploy/studentapp/studentapp-deployment.yaml', 
                                  kubeConfig: [path: ''], 
                                  kubeconfigId: 'K8s_Config',
                                  enableConfigSubstitution: true
+                }
             }
         }
 /**
