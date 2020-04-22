@@ -32,7 +32,7 @@ pipeline {
                 }  
             }
         }
-
+/**
         stage('Deploy Student application in K8s Cluster') {
             steps{
                 kubernetesDeploy configs: 'studentapp/**', 
@@ -40,6 +40,11 @@ pipeline {
                                  kubeconfigId: 'K8s_Config',
                                  enableConfigSubstitution: true
             }
+        }
+        **/
+
+        stage('Deploy Student application in K8s Cluster') {
+            sh 'kubectl create -f studentapp/postgres.yml'
         }
     }
 }
