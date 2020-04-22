@@ -26,7 +26,7 @@ pipeline {
         stage('Build & Push the Docker image') {
             steps {
                 withDockerRegistry(credentialsId: 'Docker_Credentials', url: 'https://index.docker.io/v1/') {
-                      def app = docker.build("chetanpatel/studentapp:latest",'.').push()
+                    docker.build("chetanpatel/studentapp:latest",'.').push()
                 }
             } 
         }
