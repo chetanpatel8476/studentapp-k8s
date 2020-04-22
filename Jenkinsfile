@@ -32,17 +32,16 @@ pipeline {
                 }  
             }
         }
-/**
+        
         stage('Deploy Student application in K8s Cluster') {
             steps{
-                kubernetesDeploy configs: 'studentapp/**', 
+                kubernetesDeploy configs: 'studentapp-deploy/studentapp/studentapp-deployment.yaml', 
                                  kubeConfig: [path: ''], 
                                  kubeconfigId: 'K8s_Config',
                                  enableConfigSubstitution: true
             }
         }
-        **/
-
+/**
         stage('Deploy Student application in K8s Cluster') {
             steps{
                 withCredentials([kubeconfigFile(credentialsId: 'K8s_Config', variable: 'KUBECONFIG')]) {
@@ -50,6 +49,6 @@ pipeline {
                     sh 'kubectl apply -f studentapp-deploy/studentapp/studentapp-service.yaml'
                 }
             }
-        }
+        } **/
     }
 }
