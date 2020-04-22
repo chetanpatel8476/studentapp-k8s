@@ -25,33 +25,19 @@ pipeline {
 
         stage('Build & Push the Docker image') {
             steps {
-                script {
-                    withDockerRegistry(credentialsId: 'Docker_Credentials', url: 'https://index.docker.io/v1/') {
-                      def app = docker.build("chetanpatel/studentapp:${env.BUILD_NUMBER}",'.').push()
-                    } 
-                }  
-            }
+                withDockerRegistry(credentialsId: 'Docker_Credentials', url: 'https://index.docker.io/v1/') {
+                      def app = docker.build("chetanpatel/studentapp:latest",'.').push()
+                }
+            } 
         }
         
         stage('Deploy Student application in K8s Cluster') {
             steps{
-                script {
-                    def buildNumber = "${env.BUILD_NUMBER}"
-                    kubernetesDeploy configs: 'studentapp-deploy/studentapp/studentapp-deployment.yaml', 
+                kubernetesDeploy configs: 'studentapp-deploy/studentapp/studentapp-deployment.yaml', 
                                  kubeConfig: [path: ''], 
                                  kubeconfigId: 'K8s_Config',
                                  enableConfigSubstitution: true
-                }
             }
         }
-/**
-        stage('Deploy Student application in K8s Cluster') {
-            steps{
-                withCredentials([kubeconfigFile(credentialsId: 'K8s_Config', variable: 'KUBECONFIG')]) {
-                    sh 'kubectl apply -f studentapp-deploy/studentapp/studentapp-deployment.yaml'
-                    sh 'kubectl apply -f studentapp-deploy/studentapp/studentapp-service.yaml'
-                }
-            }
-        } **/
     }
 }
