@@ -19,7 +19,7 @@ pipeline {
         stage('Build & Push the Docker image') {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: 'Docker_Credentials', url: 'https://hub.docker.com/') {
+                    withDockerRegistry(credentialsId: 'Docker_Credentials', url: 'https://index.docker.io/v1/') {
                       def app = docker.build("chetanpatel/studentapp:${env.BUILD_NUMBER}",'.').push()
                     } 
                 }  
