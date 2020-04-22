@@ -46,8 +46,8 @@ pipeline {
         stage('Deploy Student application in K8s Cluster') {
             steps{
                 withCredentials([kubeconfigFile(credentialsId: 'K8s_Config', variable: 'KUBECONFIG')]) {
-                    sh 'kubectl create -f studentapp-deploy/studentapp/studentapp-deployment.yaml'
-                    sh 'kubectl create -f studentapp-deploy/studentapp/studentapp-service.yaml'
+                    sh 'kubectl apply -f studentapp-deploy/studentapp/studentapp-deployment.yaml'
+                    sh 'kubectl apply -f studentapp-deploy/studentapp/studentapp-service.yaml'
                 }
             }
         }
