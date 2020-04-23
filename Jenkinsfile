@@ -35,7 +35,7 @@ pipeline {
         
         stage('Deploy Student application in K8s Cluster') {
             steps{
-                sh "./changeTag.sh ${env.BUILD_NUMBER}"
+                sed -i "s/tagVersion/$1/g" studentapp-deploy/studentapp/studentapp-deployment.yaml
                 kubernetesDeploy configs: 'studentapp-deploy/studentapp/studentapp-deployment.yaml', 
                                  kubeConfig: [path: ''], 
                                  kubeconfigId: 'K8s_Config',
