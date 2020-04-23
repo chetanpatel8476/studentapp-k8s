@@ -102,7 +102,7 @@ public class StudentControllerTest {
 	@Test
 	@DatabaseSetup("/xmlFiles/no_data.xml")
 	public void listAllStudentsIntegresionTest_NotFound() throws Exception {
-		String uri = "/students";
+		String uri = "/studentss";
 		mvc.perform(get(uri).accept(MediaType.APPLICATION_JSON_UTF8_VALUE)).andDo(print())
 
 				.andExpect(status().isNotFound());
