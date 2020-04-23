@@ -78,7 +78,7 @@ public class StudentControllerTest {
 	@Test
 	@DatabaseSetup("/xmlFiles/student.xml")
 	public void listAllStudentsIntegresionTest() throws Exception {
-		String uri = "/liststudent";
+		String uri = "/students";
 		mvc.perform(get(uri).accept(MediaType.APPLICATION_JSON_UTF8_VALUE)).andDo(print())
 
 				.andExpect(status().isOk())
@@ -93,7 +93,7 @@ public class StudentControllerTest {
 	@Test
 	@DatabaseSetup("/xmlFiles/no_data.xml")
 	public void listAllStudentsIntegresionTest_NoContent() throws Exception {
-		String uri = "/liststudent";
+		String uri = "/students";
 		mvc.perform(get(uri).accept(MediaType.APPLICATION_JSON_UTF8_VALUE)).andDo(print())
 
 				.andExpect(status().isNoContent());
@@ -102,7 +102,7 @@ public class StudentControllerTest {
 	@Test
 	@DatabaseSetup("/xmlFiles/no_data.xml")
 	public void listAllStudentsIntegresionTest_NotFound() throws Exception {
-		String uri = "/liststudentss";
+		String uri = "/students";
 		mvc.perform(get(uri).accept(MediaType.APPLICATION_JSON_UTF8_VALUE)).andDo(print())
 
 				.andExpect(status().isNotFound());

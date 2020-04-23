@@ -29,7 +29,7 @@ public class StudentController {
 	@Autowired
 	private StudentServiceImpl studentServiceImpl;
 
-	@RequestMapping(value = "/liststudent", method = RequestMethod.GET)
+	@RequestMapping(value = "/students", method = RequestMethod.GET)
 	public ResponseEntity<Page<Student>> listAllStudents(
 			@RequestParam(value = "page", required = false, defaultValue = PaginationSortingUtils.PAGE) Integer page,
 			@RequestParam(value = "size", required = false, defaultValue = PaginationSortingUtils.SIZE) Integer size) {
