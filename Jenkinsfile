@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'Docker_Credentials', url: 'https://index.docker.io/v1/') {
-                      def app = docker.build("chetanpatel/studentapp:latest",'.').push()
+                      def app = docker.build("chetanpatel/studentapp:${env.BUILD_NUMBER}",'.').push()
                     } 
                 }  
             }
@@ -35,6 +35,7 @@ pipeline {
         
         stage('Deploy Student application in K8s Cluster') {
             steps{
+                sh "./changeTag.sh ${env.BUILD_NUMBER}"
                 kubernetesDeploy configs: 'studentapp-deploy/studentapp/studentapp-deployment.yaml', 
                                  kubeConfig: [path: ''], 
                                  kubeconfigId: 'K8s_Config',

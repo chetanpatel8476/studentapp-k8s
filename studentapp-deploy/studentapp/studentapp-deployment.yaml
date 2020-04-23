@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: studentapp
-        image: chetanpatel/studentapp:latest
+        image: chetanpatel/studentapp:tagVersion
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
